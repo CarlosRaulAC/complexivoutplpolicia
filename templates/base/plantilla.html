@@ -32,8 +32,8 @@
 
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="index.html">
-                    <span class="align-middle">M - Preventivo</span>
+                <a class="sidebar-brand" href="{% url 'home:home' %}">
+                    <span class="align-middle">PNZ7 - MPreventivo</span>
                 </a>
 
                 <ul class="sidebar-nav">
@@ -42,7 +42,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="#">
+                        <a class="sidebar-link" href="{% url 'home:home' %}">
                             <i class="align-middle" data-feather="sliders"></i> <span
                                 class="align-middle">Home</span>
                         </a>
@@ -53,11 +53,11 @@
                             <i class="align-middle" data-feather="map"></i> <span class="align-middle">Dependencias</span>
                         </a>
                         <ul class="submenu" id="dependencies-submenu" hidden>
-                            <li><a class="sidebar-link" href="#">Provincias</a></li>
-                            <li><a class="sidebar-link" href="#">Distritos</a></li>
-                            <li><a class="sidebar-link" href="#">Cantones</a></li>
-                            <li><a class="sidebar-link" href="#">Circuitos</a></li>
-                            <li><a class="sidebar-link" href="#">Subcircuitos</a></li>
+                            <li><a class="sidebar-link" href="{% url 'dependencias:provincia_list' %}">Provincias</a></li>
+                            <li><a class="sidebar-link" href="{% url 'dependencias:distrito_list' %}">Distritos</a></li>
+                            <li><a class="sidebar-link" href="{% url 'dependencias:canton_list' %}">Cantones</a></li>
+                            <li><a class="sidebar-link" href="{% url 'dependencias:circuito_list' %}">Circuitos</a></li>
+                            <li><a class="sidebar-link" href="{% url 'dependencias:subcircuito_list' %}">Subcircuitos</a></li>
                             <!-- Agrega más elementos del submenu según sea necesario -->
                         </ul>
                     </li>
@@ -69,7 +69,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="#">
+                        <a class="sidebar-link" href="{% url 'flota:vehicular_list' %}">
                             <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Flota Vehicular</span>
                         </a>
                     </li>

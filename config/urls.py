@@ -20,6 +20,8 @@ from django.urls import path, include
 urlpatterns = [
 
     path('',include(('home.urls','home'), namespace='home')),
+    path('flota/',include(('flota.urls','flota'), namespace='flota')),
+    path('dependencias/',include(('dependencias.urls','dependencias'), namespace='dependencias')),
     path('catalogos/',include(('catalogos.urls','catalogos'), namespace='catalogos')),
     path('personal/',include(('personal.urls','personal'), namespace='personal')),
     path('admin/', admin.site.urls),
