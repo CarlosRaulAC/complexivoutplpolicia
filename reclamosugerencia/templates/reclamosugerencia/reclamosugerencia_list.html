@@ -1,0 +1,113 @@
+{% extends 'base/plantilla.html' %}
+
+{% block content %}
+<div class="container-fluid p-0">
+
+    <h1 class="h3 mb-3">Listado de Reclamos y Sugerencias</h1>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a href="" class="btn btn-primary"><span data-feather="plus-square"></span> Nuevo</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" id="fechaInicio" class="form-control" placeholder="Fecha de inicio">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" id="fechaFin" class="form-control" placeholder="Fecha de fin">
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" id="btnImprimir" class="btn btn-success">
+                                <span data-feather="printer"></span> Imprimir
+                            </a>
+                        </div>
+                    </div>
+                <div class="card-body">
+                    <table id="tbl" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Circuito</th>
+                                <th>Subcircuito</th>
+                                <th>Tipo</th>
+                                <th>Fecha</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in obj %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.circuito}}</td>
+                                <td>{{i.subcircuito}}</td>
+                                <td>{{i.tipo}}</td>
+                                <td>{{i.fc|date:"d/m/Y H:i:s"}}</td>
+                                <td>
+                                    {% if not item.is_staff %}
+                                    <a href="" class="btn btn-warning"> <span data-feather="edit"></span></a>
+                                    <a href="" class="btn btn-danger"> <span data-feather="delete"></span></a>
+            
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block jspage %}
+<script>
+    $(document).ready(function() {
+        $('#tbl').DataTable();
+
+        // Agregar el código JavaScript necesario para el selector de fecha y la impresión
+        $('#fechaInicio').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('#fechaFin').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('#btnImprimir').on('click', function () {
+            var fechaInicio = $('#fechaInicio').datepicker('getDate');
+            var fechaFin = $('#fechaFin').datepicker('getDate');
+
+            if (fechaInicio && fechaFin) {
+                // Formatea las fechas en el formato deseado (puedes usar una biblioteca como moment.js si es necesario)
+                var fechaInicioStr = fechaInicio.getDate() + '/' + (fechaInicio.getMonth() + 1) + '/' + fechaInicio.getFullYear();
+                var fechaFinStr = fechaFin.getDate() + '/' + (fechaFin.getMonth() + 1) + '/' + fechaFin.getFullYear();
+
+                console.log("Fecha de inicio:", fechaInicioStr);
+                console.log("Fecha de fin:", fechaFinStr);
+                
+                // Construye la URL de la vista de impresión
+                var urlImprimir = '{% url "reclamosugerencia:rs_print_all" %}?fecha_inicio=' + fechaInicioStr + '&fecha_fin=' + fechaFinStr;
+
+                // Abre la ventana de impresión
+                window.open(urlImprimir, '_blank');
+            } else {
+                // Maneja el caso cuando las fechas no están seleccionadas
+                alert('Por favor, seleccione ambas fechas antes de imprimir.');
+            }
+        });
+
+    });
+</script>
+{% endblock jspage %}

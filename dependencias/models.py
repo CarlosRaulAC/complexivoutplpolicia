@@ -112,7 +112,7 @@ class Subcircuito(ClaseBase):
     )
 
     def __str__(self):
-        return '{}:{}'.format(self.circuito.codigo,self.codigo)
+        return '{}:{}'.format(self.circuito.nombre,self.nombre)
     
     def save(self):
         self.nombre = self.nombre.upper()

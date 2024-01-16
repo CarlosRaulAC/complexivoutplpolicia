@@ -48,7 +48,7 @@ def provincia_inactivate(request, id):
         return redirect("dependencias:provincia_list")
     
     if request.method=='GET':
-        contexto = {'obj':provincia}
+        contexto = {'obj':provincia} 
 
     if request.method=='POST':
         provincia.estado = False

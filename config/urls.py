@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
 
     path('',include(('home.urls','home'), namespace='home')),
+    path('reclamosugerencia/',include(('reclamosugerencia.urls','reclamosugerencia'), namespace='reclamos')),
     path('flota/',include(('flota.urls','flota'), namespace='flota')),
     path('dependencias/',include(('dependencias.urls','dependencias'), namespace='dependencias')),
     path('catalogos/',include(('catalogos.urls','catalogos'), namespace='catalogos')),

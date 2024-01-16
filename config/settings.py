@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'dependencias',
     'personal',
     'flota',
+    'reclamosugerencia',
 
 ]
 
