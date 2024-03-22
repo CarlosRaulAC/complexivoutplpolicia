@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'flota',
     'reclamosugerencia',
     'movilizacion',
+    'combustible',
 
 ]
 
