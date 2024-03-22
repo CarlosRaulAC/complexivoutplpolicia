@@ -5,7 +5,7 @@ from .models import FlotaVehicular
 from django.urls import reverse_lazy
 from .forms import FlotaVehicularForm
 
-# Vistas para Provincia
+# Vistas para Flota vehicular
 class FlotaVehicularView(LoginRequiredMixin, ListView):
     template_name = "flota/flota_list.html"
     login_url = 'bases:login'
